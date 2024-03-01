@@ -3,7 +3,11 @@ import './TodoSearch.css'
 
 function TodoSearch() {
   return (
-      <input className='TodoSearch' type='search' placeholder='Buscar una tarea 🔍' />
+      <input id='search' className='TodoSearch' type='search' placeholder='Buscar una tarea 🔍' 
+      onChange={(event) => {
+        console.log(event.target.value);
+      }}
+      />
   )
 }
 
