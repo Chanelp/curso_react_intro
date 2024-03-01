@@ -1,10 +1,10 @@
 import React from 'react'
 
-function TodoItem() {
+function TodoItem(props) {
   return (
       <li>
         <span>✅</span>
-        <p>Aprender React</p>
+        <p>{props.text}</p>
         <span>⛔</span>
       </li>
   )
