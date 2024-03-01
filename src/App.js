@@ -1,25 +1,24 @@
-import logo from './platzi.webp';
 import './App.css';
+import { TodoCounter } from "./Components/TodoCounter";
+import { TodoSearch } from "./Components/TodoSearch";
+import { TodoList } from "./Components/TodoList";
+import { TodoItem } from './Components/TodoItem';
+import { TodoButton } from './Components/TodoButton';
+
 
 function App() {
   return (
     <div className="App">
-      <Todo></Todo>
-      <Todo></Todo>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edita el archivo <code>src/App.js</code> y guarda para recargar.
-        </p>
-        <a
-          className="App-link"
-          href="https://platzi.com/reactjs"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoCounter/>
+      <TodoSearch/>
+
+      <TodoList>
+        <TodoItem/>
+        <TodoItem/>
+        <TodoItem/>
+      </TodoList>
+
+      <TodoButton/>
     </div>
   );
 }
