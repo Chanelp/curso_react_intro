@@ -23,15 +23,4 @@ function App() {
   );
 }
 
-function Todo(){
-  return (
-    <ul>
-      <h3>Tareas</h3>
-      <span>V</span>
-      <li>Aprender react</li>
-      <span>X</span>
-    </ul>
-  );
-}
-
 export default App;
