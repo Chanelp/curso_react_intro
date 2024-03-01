@@ -1,11 +1,10 @@
 import React from 'react'
 import './TodoSearch.css'
 
-function TodoSearch() {
-
-  let [searchValue, setSearchValue] = React.useState('');
-  console.log(searchValue);
-
+function TodoSearch({
+  searchValue,
+  setSearchValue
+}) {
   return (
       <input id='search' 
       value={searchValue}
