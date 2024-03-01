@@ -20,8 +20,8 @@ function App() {
       <TodoSearch/>
 
       <TodoList>
-        {defaultTodos.map(todo => (
-          <TodoItem key={todo.text} text={todo.text}></TodoItem>
+        {defaultTodos.map((todo, index) => (
+          <TodoItem key={index} text={todo.text}></TodoItem>
         ))}
       </TodoList>
 
