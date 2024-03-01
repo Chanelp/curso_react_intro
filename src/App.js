@@ -4,6 +4,8 @@ import './App.css';
 function App() {
   return (
     <div className="App">
+      <Todo></Todo>
+      <Todo></Todo>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -19,6 +21,17 @@ function App() {
         </a>
       </header>
     </div>
+  );
+}
+
+function Todo(){
+  return (
+    <ul>
+      <h3>Tareas</h3>
+      <span>V</span>
+      <li>Aprender react</li>
+      <span>X</span>
+    </ul>
   );
 }
 
