@@ -6,31 +6,47 @@ import { TodoItem } from './Components/TodoItem';
 import { TodoButton } from './Components/TodoButton';
 import React from 'react';
 
-const defaultTodos = [
-  { text: 'Curso de cocina', completed: false },
-  { text: 'Curso del DOM', completed: true },
-  { text: 'Curso de Figma', completed: false },
-  { text: 'Curso de JavaScript', completed: true },
-  { text: 'Curso de C#', completed: true },
-];
+// const defaultTodos = [
+//   { text: 'Curso de cocina', completed: false },
+//   { text: 'Curso del DOM', completed: true },
+//   { text: 'Curso de Figma', completed: false },
+//   { text: 'Curso de JavaScript', completed: true },
+//   { text: 'Curso de C#', completed: true },
+// ];
 
 function App() {
+
+  const localStorageTodos = localStorage.getItem('TODOS_V1');
+  let parsedTodos;
+
+  if(!localStorageTodos){
+    localStorage.setItem('TODOS_V1', JSON.stringify([]));
+    parsedTodos = [];
+  } else {
+    parsedTodos = JSON.parse(localStorageTodos);
+  }
+  
+  const [todos, setTodos] = React.useState(parsedTodos);
 
   const [searchValue, setSearchValue] = React.useState('');
   console.log(searchValue);
 
-  const [todos, setTodos] = React.useState(defaultTodos);
   const todosCompleted = todos.filter(todo => !!todo.completed).length;
   const totalTodos = todos.length;
 
   const searchedTodos = todos.filter(todo => (todo.text.toLowerCase().includes(searchValue.toLocaleLowerCase())));
+
+  const saveTodos = (newTodos) =>{
+    localStorage.setItem("TODOS_V1", JSON.stringify(newTodos));
+    setTodos(newTodos);
+  }
 
   const completeTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex((todo) => todo.text === text);
 
     newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
-    setTodos(newTodos);
+    saveTodos(newTodos);
   }
 
   const deleteTodo = (text) => {
@@ -38,7 +54,7 @@ function App() {
     const todoIndex = newTodos.findIndex((todo) => todo.text === text);
 
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
+    saveTodos(newTodos);
   }
 
   return (
