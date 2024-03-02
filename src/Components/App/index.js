@@ -7,14 +7,6 @@ import { TodoItem } from '../TodoItem';
 import { TodoButton } from '../TodoButton';
 import { useLocalStorage } from '../../Hooks/useLocalStorage';
 
-// const defaultTodos = [
-//   { text: 'Curso de cocina', completed: false },
-//   { text: 'Curso del DOM', completed: true },
-//   { text: 'Curso de Figma', completed: false },
-//   { text: 'Curso de JavaScript', completed: true },
-//   { text: 'Curso de C#', completed: true },
-// ];
-
 function App() {
   
   const [todos, saveTodos] = useLocalStorage("TODOS_V1", []);
