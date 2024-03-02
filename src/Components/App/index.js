@@ -1,17 +1,30 @@
 import './App.css';
-import React from 'react';
-import { TodoCounter } from "../TodoCounter";
-import { TodoSearch } from "../TodoSearch";
-import { TodoList } from "../TodoList";
-import { TodoItem } from '../TodoItem';
-import { TodoButton } from '../TodoButton';
+import {useEffect, useState} from 'react';
 import { useLocalStorage } from '../../Hooks/useLocalStorage';
+import { AppUI } from './AppUI';
 
 function App() {
+
+  const [message, setMessage] = useState({});
+
+  async function API(url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  }
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await API("https://api.chucknorris.io/jokes/random");
+      setMessage(data);
+    }
+
+    fetchData();
+  }, []);
   
   const [todos, saveTodos] = useLocalStorage("TODOS_V1", []);
 
-  const [searchValue, setSearchValue] = React.useState('');
+  const [searchValue, setSearchValue] = useState('');
   console.log(searchValue);
 
   const todosCompleted = todos.filter(todo => !!todo.completed).length;
@@ -37,21 +50,16 @@ function App() {
 
   return (
     <>
-      <TodoCounter completed={todosCompleted} total={totalTodos} />
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-
-      <TodoList>
-        {searchedTodos.map((todo, index) => (
-          <TodoItem 
-            key={index} 
-            text={todo.text} 
-            completed={todo.completed} 
-            onComplete={() => completeTodo(todo.text)} 
-            onDelete={() => deleteTodo(todo.text)} />
-        ))}
-      </TodoList>
-
-      <TodoButton/>
+    <p>{message.value || "Cargando"}</p>
+    <AppUI 
+        todosCompleted={todosCompleted} 
+        totalTodos={totalTodos} 
+        searchValue={searchValue} 
+        setSearchValue={setSearchValue} 
+        searchedTodos={searchedTodos} 
+        completeTodo={completeTodo} 
+        deleteTodo={deleteTodo}
+    />
     </>
   );
 }
