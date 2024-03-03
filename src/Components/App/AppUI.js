@@ -10,7 +10,7 @@ import { EmptyTodos } from '../EmptyTodos';
 import { TodoContext } from "../../Context/TodoContext";
 
 function AppUI(){
-  const {loading, error, searchedTodos, completeTodo, deleteTodo} = React.useContext(TodoContext);
+  const {loading, error, searchedTodos, completeTodo, deleteTodo, totalTodos} = React.useContext(TodoContext);
 
     return (
         <>
@@ -19,7 +19,8 @@ function AppUI(){
           <TodoList>
             { loading && <TodosLoading/> }
             { error && <TodosError/>}
-            { (!loading && searchedTodos.length === 0) && <EmptyTodos/> }
+            { (!loading && totalTodos.length === 0) && <EmptyTodos/> }
+            {(!loading && totalTodos > 0 && searchedTodos.length === 0) && <p>No hay coincidencias</p>}
 
             {searchedTodos.map((todo, index) => (
               <TodoItem 
