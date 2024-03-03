@@ -1,28 +1,11 @@
 import './App.css';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import { useLocalStorage } from '../../Hooks/useLocalStorage';
 import { AppUI } from './AppUI';
 
 function App() {
-
-  const [message, setMessage] = useState({});
-
-  async function API(url) {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  }
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await API("https://api.chucknorris.io/jokes/random");
-      setMessage(data);
-    }
-
-    fetchData();
-  }, []);
   
-  const [todos, saveTodos] = useLocalStorage("TODOS_V1", []);
+  const { item: todos, saveItem: saveTodos, loading, error} = useLocalStorage("TODOS_V1", []);
 
   const [searchValue, setSearchValue] = useState('');
   console.log(searchValue);
@@ -50,7 +33,6 @@ function App() {
 
   return (
     <>
-    <p>{message.value || "Cargando"}</p>
     <AppUI 
         todosCompleted={todosCompleted} 
         totalTodos={totalTodos} 
@@ -59,6 +41,8 @@ function App() {
         searchedTodos={searchedTodos} 
         completeTodo={completeTodo} 
         deleteTodo={deleteTodo}
+        loading={loading}
+        error={error}
     />
     </>
   );
