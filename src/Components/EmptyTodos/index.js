@@ -2,7 +2,7 @@ import React from "react";
 
 function EmptyTodos(){
     return (
-        <p>Loading...</p>
+        <p>No hay tareas</p>
     )
 };
 
