@@ -4,9 +4,9 @@ import "./TodosLoading.css";
 function TodosLoading() {
   return (
     <div className="LoadingTodo-container">
-      <div class="loader">
-        <span class="loader-text">Cargando</span>
-        <span class="load"></span>
+      <div className="loader">
+        <span className="loader-text">Cargando</span>
+        <span className="load"></span>
       </div>
     </div>
   );
