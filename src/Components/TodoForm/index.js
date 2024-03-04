@@ -10,7 +10,7 @@ function TodoForm(){
 
     const onSubmit = (event) => {
         event.preventDefault();
-        addTodo(newTodoValue);
+        addTodo(newTodoValue.trim());
         setModalVisibility(false);
     };
 
