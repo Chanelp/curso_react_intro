@@ -32,7 +32,7 @@ function AppUI(){
                 onDelete={() => deleteTodo(todo.text)} />
             ))}
         </TodoList>
-        <TodoButton/>
+        <TodoButton setOpenModal={setOpenModal}/>
         
         { openModal && ( <Modal>La funcionalidad de agregar todo a traves de portales</Modal> ) }
         </>
