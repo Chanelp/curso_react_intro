@@ -1,10 +1,10 @@
 import React from 'react'
 import "./TodoButton.css";
 
-function TodoButton({ setOpenModal }) {
+function TodoButton({ setModalVisibility }) {
   return (
     <div className='CreateTodoButton' onClick={() => {
-      setOpenModal(state => !state);
+      setModalVisibility(state => !state);
     }
   }
   >+</div>

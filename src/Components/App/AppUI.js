@@ -12,7 +12,7 @@ import { Modal } from "../Modal";
 import { TodoForm } from "../TodoForm";
 
 function AppUI(){
-  const {loading, error, searchedTodos, completeTodo, deleteTodo, totalTodos, openModal, setOpenModal} = React.useContext(TodoContext);
+  const {loading, error, searchedTodos, completeTodo, deleteTodo, totalTodos, ModalVisibility, setModalVisibility} = React.useContext(TodoContext);
 
     return (
         <>
@@ -33,9 +33,9 @@ function AppUI(){
                 onDelete={() => deleteTodo(todo.text)} />
             ))}
         </TodoList>
-        <TodoButton setOpenModal={setOpenModal}/>
+        <TodoButton setModalVisibility={setModalVisibility}/>
         
-        { openModal && ( <Modal><TodoForm></TodoForm></Modal> ) }
+        { ModalVisibility && ( <Modal><TodoForm></TodoForm></Modal> ) }
         </>
       );
 }
