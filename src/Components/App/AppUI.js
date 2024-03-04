@@ -9,6 +9,7 @@ import { TodosError } from '../TodosError';
 import { EmptyTodos } from '../EmptyTodos';
 import { TodoContext } from "../../Context/TodoContext";
 import { Modal } from "../Modal";
+import { TodoForm } from "../TodoForm";
 
 function AppUI(){
   const {loading, error, searchedTodos, completeTodo, deleteTodo, totalTodos, openModal, setOpenModal} = React.useContext(TodoContext);
@@ -34,7 +35,7 @@ function AppUI(){
         </TodoList>
         <TodoButton setOpenModal={setOpenModal}/>
         
-        { openModal && ( <Modal>La funcionalidad de agregar todo a traves de portales</Modal> ) }
+        { openModal && ( <Modal><TodoForm></TodoForm></Modal> ) }
         </>
       );
 }
